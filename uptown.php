@@ -30,7 +30,14 @@ if ( ! empty( $title ) )
 echo $args['before_title'] . $title . $args['after_title'];
 
 // This is where you run the code and display the output
-echo __( 'Hello, World!', 'wpb_widget_domain' );
+$argsCatOperacion = array( 'child_of' => 4 ); 
+
+$categories = get_categories( $argsCatOperacion );
+echo "<select>";
+foreach ($categories as $valor) {
+		echo "<option value='".$valor->term_id."'>".$valor->slug."	</option>";
+}
+echo "</select>";
 echo $args['after_widget'];
 }
 		
