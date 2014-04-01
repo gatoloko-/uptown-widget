@@ -28,7 +28,15 @@
 				$tipo = $_GET['tp'];
 				$comunaQ = $_GET['cm'];
 				$region = $_GET['rg'];
-				$the_query = new WP_Query( array( 'category__and' => array( $operacion, $tipo, $comunaQ, $region) ) );
+				$c = $_GET['c'];
+				
+				if ($c == "") {
+					
+					$the_query = new WP_Query( array( 'category__and' => array( $operacion, $tipo, $comunaQ, $region) ) );
+				} else {
+					$the_query = new WP_Query( 'tag='.$c.'' );
+				}
+				
 				
 				if ( $the_query->have_posts() ) : while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
         				
